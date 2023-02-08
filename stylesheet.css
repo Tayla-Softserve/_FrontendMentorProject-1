@@ -1,0 +1,132 @@
+@font-face {
+  font-family: monsterrat-normal;
+  src: url(fonts/Montserrat/static/Montserrat-Medium.ttf);
+}
+
+@font-face {
+  font-family: fraunces-large;
+  src: url(fonts/Fraunces/static/Fraunces_144pt/Fraunces_144pt-Bold.ttf);
+}
+
+body {
+  /*Theme Colours*/
+  --dark-cyan: hsl(158, 36%, 37%);
+  --cream: hsl(30, 38%, 92%);
+  --very-dark-blue: hsl(212, 21%, 14%);
+  --dark-greyish-blue: hsl(228, 12%, 48%);
+
+  background-color: var(--cream);
+  display: grid;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.category {
+  grid-area: header;
+  font-family: monsterrat-normal;
+  font-size: 80px;
+  color: var(--dark-greyish-blue);
+  place-self: center start;
+  letter-spacing: 40px;
+}
+
+.name {
+  grid-area: title;
+  font-family: fraunces-large;
+  font-size: 300px;
+  justify-content: left;
+}
+
+.description {
+  grid-area: info-text;
+  font-family: monsterrat-normal;
+  font-size: 80px;
+  color: var(--dark-greyish-blue);
+  line-height: 2;
+}
+
+.price {
+  grid-area: footer;
+  font-family: fraunces-large;
+  font-size: 300px;
+  color: var(--dark-cyan);
+}
+
+.price::after {
+  content: "$169.99";
+  font-size: 100px;
+  position: relative;
+  top: -25%;
+  left: 150px;
+  color: var(--dark-greyish-blue);
+  text-decoration: line-through;
+}
+
+.button {
+  margin: 1%;
+  grid-area: buy-button;
+  display: grid;
+  background-color: var(--dark-cyan);
+  height: 80%;
+  border-radius: 60px;
+  min-height: 300px;
+  align-content: center;
+}
+
+.button:hover {
+  opacity: 0.7;
+}
+
+.button-text {
+  display: flex;
+  font-family: monsterrat-normal;
+  color: white;
+  font-size: 100px;
+  justify-self: center;
+  white-space: nowrap;
+}
+
+.button-text::before {
+  content: "";
+  background: url(./images/icon-cart.svg) no-repeat;
+  background-size: contain;
+  position: relative;
+  width: 1.5ch;
+  right: 15%;
+}
+
+.img {
+  grid-area: left-column;
+  width: 50%;
+  object-fit: cover;
+}
+
+.info {
+  grid-area: right-column;
+  display: grid;
+  max-height: min-content;
+  grid-template-rows: min-content min-content min-content min-content min-content;
+  grid-template-areas:
+    "header"
+    "title"
+    "info-text"
+    "footer"
+    "buy-button";
+  margin: 10%;
+  grid-row-gap: 5%;
+}
+
+.card {
+  display: grid;
+  min-width: min-content;
+  background-color: white;
+  justify-items: stretch;
+  align-items: stretch;
+  border: 10px;
+  border-radius: 3%;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto;
+  grid-template-areas: "left-column right-column";
+}
