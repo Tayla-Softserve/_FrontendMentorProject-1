@@ -8,83 +8,98 @@
   src: url(fonts/Fraunces/static/Fraunces_144pt/Fraunces_144pt-Bold.ttf);
 }
 
-body {
+:root {
   /*Theme Colours*/
   --dark-cyan: hsl(158, 36%, 37%);
   --cream: hsl(30, 38%, 92%);
   --very-dark-blue: hsl(212, 21%, 14%);
   --dark-greyish-blue: hsl(228, 12%, 48%);
-
-  background-color: var(--cream);
-  display: grid;
+  --padding-value-default: 8%;
+  --padding-value-desktop: 10%;
+  --corner-radius-value: 3%;
   margin: 0;
   padding: 0;
-  justify-content: center;
-  align-items: center;
+}
+
+body {
+  width: 100vw;
+  background-color: var(--cream);
+  margin: 0;
+  padding: 0;
+  display: flex;
 }
 
 .category {
   grid-area: header;
   font-family: monsterrat-normal;
-  font-size: 80px;
   color: var(--dark-greyish-blue);
-  place-self: center start;
-  letter-spacing: 40px;
+  font-size: 1.7vh;
+  letter-spacing: 0.7ch;
+  padding-left: var(--padding-value-default);
 }
 
 .name {
+  display: flex;
   grid-area: title;
   font-family: fraunces-large;
-  font-size: 300px;
-  justify-content: left;
+  color: var(--very-dark-blue);
+  font-size: 5vh;
+  line-height: 1.5ch;
+  text-align: left;
+  margin-right: var(--padding-value-default);
+  padding-left: var(--padding-value-default);
 }
 
 .description {
   grid-area: info-text;
   font-family: monsterrat-normal;
-  font-size: 80px;
   color: var(--dark-greyish-blue);
-  line-height: 2;
+  line-height: 1.5;
+  padding-right: var(--padding-value-default);
+  font-size: 2.2vh;
+  padding-left: var(--padding-value-default);
 }
 
 .price {
   grid-area: footer;
   font-family: fraunces-large;
-  font-size: 300px;
   color: var(--dark-cyan);
+  font-size: 5vh;
+  padding-left: var(--padding-value-default);
 }
 
 .price::after {
   content: "$169.99";
-  font-size: 100px;
-  position: relative;
-  top: -25%;
-  left: 150px;
+  font-family: monsterrat-normal;
   color: var(--dark-greyish-blue);
   text-decoration: line-through;
+  font-size: 1.4vh;
+  position: relative;
+  vertical-align: middle;
+  left: 5%;
 }
 
 .button {
-  margin: 1%;
   grid-area: buy-button;
   display: grid;
   background-color: var(--dark-cyan);
-  height: 80%;
-  border-radius: 60px;
-  min-height: 300px;
-  align-content: center;
+  border-radius: 5px;
+  height: 5.5ch;
+  margin: var(--padding-value-default);
+  margin-top: -(var(--padding-value-default));
 }
 
 .button:hover {
-  opacity: 0.7;
+  background-color: var(--very-dark-blue);
 }
 
 .button-text {
   display: flex;
   font-family: monsterrat-normal;
   color: white;
-  font-size: 100px;
+  font-size: 2vh;
   justify-self: center;
+  align-self: center;
   white-space: nowrap;
 }
 
@@ -94,39 +109,94 @@ body {
   background-size: contain;
   position: relative;
   width: 1.5ch;
-  right: 15%;
+  right: 10%;
 }
 
-.img {
-  grid-area: left-column;
-  width: 50%;
-  object-fit: cover;
-}
-
-.info {
-  grid-area: right-column;
-  display: grid;
-  max-height: min-content;
-  grid-template-rows: min-content min-content min-content min-content min-content;
-  grid-template-areas:
-    "header"
-    "title"
-    "info-text"
-    "footer"
-    "buy-button";
-  margin: 10%;
-  grid-row-gap: 5%;
+.image {
+  display: flex;
+  border-top-left-radius: var(--corner-radius-value);
+  border-top-right-radius: var(--corner-radius-value);
+  background-image: url(/images/image-product-mobile.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 40%;
 }
 
 .card {
-  display: grid;
-  min-width: min-content;
   background-color: white;
-  justify-items: stretch;
-  align-items: stretch;
-  border: 10px;
   border-radius: 3%;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: auto;
-  grid-template-areas: "left-column right-column";
+  position: absolute;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/*For desktop screens*/
+@media only screen and (min-width: 500px) {
+  .card {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "image header"
+      "image title"
+      "image info-text"
+      "image footer"
+      "image buy-button";
+    justify-items: stretch;
+    align-items: stretch;
+    column-gap: 2%;
+    padding-right: 1%;
+    top: 25%;
+    left: 25%;
+    height: 50vh;
+    width: 60vh;
+  }
+
+  .image {
+    grid-area: image;
+    border-bottom-left-radius: var(--corner-radius-value);
+    border-top-right-radius: 0%;
+    background-image: url(/images/image-product-desktop.jpg);
+    background-size: cover;
+    height: 100%;
+  }
+
+  .category {
+    font-size: 1.2vh;
+    letter-spacing: 1ch;
+    padding-top: var(--padding-value-desktop);
+  }
+
+  .name {
+    font-size: 4.5vh;
+    margin-right: 5%;
+  }
+
+  .description {
+    padding-right: var(--padding-value-desktop);
+    font-size: 1.6vh;
+  }
+
+  .price {
+    font-size: 3.8vh;
+  }
+
+  .price::after {
+    left: 10%;
+  }
+
+  .button {
+    border-radius: 0.5vw;
+    margin: var(--padding-value-default);
+    height: 70%;
+    margin-top: 0;
+  }
+
+  .button-text {
+    font-size: 1.7vh;
+  }
 }
